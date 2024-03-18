@@ -1,23 +1,36 @@
-import React from 'react';
-import FHIR from "fhirclient"
-// import logo from '../logo.svg';
+import React, {useEffect, useState} from 'react';
+import FHIR from 'fhirclient'
 import './App.css';
-import {APP_NAME} from "../common/utils/constants";
+import {Outlet} from 'react-router-dom';
+import {Navigator} from "../common/Navigator/Navigator";
+import {SidePanel} from "../common/SidePanel/SidePanel";
 
-FHIR.oauth2.ready()
-    .then(client => client.request("Patient"))
-    .then(console.log)
-    .catch(console.error);
+function App () {
+  const [patientFullName, setPatientFullName] = useState('');
+  const fetchData = async() => {
+    const client = await FHIR.oauth2.ready();
+    const data = await client.request(`Patient/${client.patient.id}`);
+    const fullName = `${data?.name[0]?.given[0]} ${data?.name[0]?.family}` || '';
+    console.log(data)
+    setPatientFullName(fullName);
+  };
 
-function App() {
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        {APP_NAME}
-      </header>
-    </div>
+    <>
+      <div id='nav'>
+        <Navigator />
+      </div>
+      <section id='sidepanel'>
+        <SidePanel fullName={patientFullName}/>
+      </section>
+      <div id='content'>
+        <Outlet />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
