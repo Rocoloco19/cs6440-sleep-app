@@ -1,30 +1,31 @@
 import React, {useEffect, useState} from 'react';
-import FHIR from 'fhirclient'
 import './App.css';
 import {Outlet} from 'react-router-dom';
-import {Navigator} from "../common/Navigator/Navigator";
+import { IfhirR4 } from '@smile-cdr/fhirts';
+import {IPatient} from "@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IPatient";
 import {SidePanel} from "../common/SidePanel/SidePanel";
+import {Navigator} from "../common/Navigator/Navigator";
+import connectFHIR from "../services/FhirClient";
 
 function App () {
-  const [patientFullName, setPatientFullName] = useState('');
+  const [patient, setPatient] = useState({} as IPatient)
   const fetchData = async() => {
-    const client = await FHIR.oauth2.ready();
-    const data = await client.request(`Patient/${client.patient.id}`);
-    const fullName = `${data?.name[0]?.given[0]} ${data?.name[0]?.family}` || '';
-    console.log(data)
-    setPatientFullName(fullName);
+    const fhirClient = await connectFHIR()
+    const patient: IfhirR4.IPatient = await fhirClient.request(`Patient/${fhirClient.patient.id}`);
+    setPatient(patient);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <>
       <div id='nav'>
         <Navigator />
       </div>
       <section id='sidepanel'>
-        <SidePanel fullName={patientFullName}/>
+        <SidePanel patient={patient}/>
       </section>
       <div id='content'>
         <Outlet />

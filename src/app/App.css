@@ -18,6 +18,8 @@
 
 #content {
   margin-left: 300px;
-  margin-top: 60px;
+  padding-top: 60px;
   padding-left: 24px;
+  padding-right: 24px;
+  background-color: lightsteelblue;
 }

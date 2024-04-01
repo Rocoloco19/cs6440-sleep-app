@@ -7,9 +7,6 @@ export const Navigator = () => {
     <nav>
       <ul className='nav-ul'>
         <li>
-          <Link to={`/home`}>Home</Link>
-        </li>
-        <li>
           <Link to={`sleep-history`}>Sleep History</Link>
         </li>
         <li>

@@ -1,48 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import {
-  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import {Home} from "./pages/Home/Home";
-import {SleepHistory} from "./pages/SleepHistory/SleepHistory";
-import {SleepSuggestions} from "./pages/SleepSuggestions/SleepSuggestions";
-import ErrorPage from "./common/Error/Error";
-import {SleepDisorders} from "./pages/SleepDisorders/SleepDisorders";
-import {Logout} from "./pages/Logout/Logout";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: 'home',
-        element: <Home />,
-      },
-      {
-        path: 'sleep-history',
-        element: <SleepHistory />,
-      },
-      {
-        path: 'sleep-suggestions',
-        element: <SleepSuggestions />,
-      },
-      {
-        path: 'sleep-disorders',
-        element: <SleepDisorders />,
-      },
-      {
-        path: 'logout',
-        element: <Logout />,
-      },
-    ],
-  },
-]);
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import {router} from "./common/router/router";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
