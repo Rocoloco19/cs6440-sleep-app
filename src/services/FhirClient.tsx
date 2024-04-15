@@ -7,7 +7,8 @@ const connectFHIR = async () => {
   if (client) {
     return client;
   }
-  return await FHIR.oauth2.ready();
+  client = await FHIR.oauth2.ready();
+  return  client;
 };
 
 export default connectFHIR;

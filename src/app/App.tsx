@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Outlet} from 'react-router-dom';
-import { IfhirR4 } from '@smile-cdr/fhirts';
 import {IPatient} from "@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IPatient";
 import {SidePanel} from "../common/SidePanel/SidePanel";
 import {Navigator} from "../common/Navigator/Navigator";
@@ -11,7 +10,7 @@ function App () {
   const [patient, setPatient] = useState({} as IPatient)
   const fetchData = async() => {
     const fhirClient = await connectFHIR()
-    const patient: IfhirR4.IPatient = await fhirClient.request(`Patient/${fhirClient.patient.id}`);
+    const patient: IPatient = await fhirClient.request(`Patient/${fhirClient.patient.id}`);
     setPatient(patient);
   };
 

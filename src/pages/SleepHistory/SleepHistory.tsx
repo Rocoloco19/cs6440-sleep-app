@@ -9,8 +9,13 @@ export const SleepHistory = () => {
   const [observations, setObservations] = useState([] as Array<IObservation>)
   const fetchData = async() => {
     const fhirClient = await connectFHIR()
-    const data: IBundle = await fhirClient.request(`Observation`);
-    const entries = data.entry?.map(entry => entry.resource as IObservation) || [];
+    const patientId = fhirClient.patient.id;
+    const observation: IBundle = await fhirClient.request(`Observation?category=vital-sign&patient=${patientId}`);
+    const observation2: IBundle = await fhirClient.request(`Observation?patient=${patientId}`);
+    const observation1: IBundle = await fhirClient.request(`Observation?code=8480-6`);
+    const structureDefinition: IBundle = await fhirClient.request(`StructureDefinition?name=SleepStatus`);
+    console.log('structureDefinition: ', structureDefinition)
+    const entries = observation2.entry?.map(entry => entry.resource as IObservation) || [];
     setObservations(entries);
   };
 
