@@ -48,13 +48,6 @@ export const SleepDisorders = () => {
   };
 
   const selectChip = (cause: string) => {
-    // let newSelection = [];
-    // const disorderFound = selectedDisorders.find(disorder => disorder === cause);
-    // if (disorderFound) {
-    //   newSelection = selectedDisorders.filter(disorder => disorder !== cause);
-    // } else {
-    //   newSelection = [...selectedDisorders, cause];
-    // }
     setSelectedDisorder(cause);
   }
 
@@ -101,14 +94,8 @@ export const SleepDisorders = () => {
               pagination: {
                 paginationModel: { page: 0, pageSize: 5 },
               },
-              // filter: {
-              //   filterModel: {
-              //     items: [{ field: 'description', operator: 'contains', value: selectedDisorder }],
-              //   },
-              // },
             }}
             pageSizeOptions={[5, 10]}
-            checkboxSelection
           />
         </div>
       </FormControl>

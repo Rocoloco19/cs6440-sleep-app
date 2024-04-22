@@ -24,3 +24,8 @@
   background-color: #FFFFFF;
   height: 100vh;
 }
+
+.active {
+  font-weight: 600;
+  text-decoration: underline!important;
+}

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import React from "react";
 import './Navigator.css';
 
@@ -7,13 +7,25 @@ export const Navigator = () => {
     <nav>
       <ul className='nav-ul'>
         <li>
-          <Link to={`sleep-history`}>Sleep History</Link>
+          <NavLink
+            to='/home'
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }>Home</NavLink>
         </li>
         <li>
-          <Link to={`sleep-suggestions`}>Sleep Suggestions</Link>
+          <NavLink
+            to='/sleep-suggestions'
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }>Sleep Suggestions</NavLink>
         </li>
         <li>
-          <Link to={`sleep-disorders`}>Sleep Disorders</Link>
+          <NavLink
+            to='/sleep-disorders'
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }>Sleep Disorders</NavLink>
         </li>
       </ul>
     </nav>

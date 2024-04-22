@@ -8,6 +8,7 @@ import React from "react";
 import ProtectedRoutes from "./ProtectedRoutes";
 import {Public} from "../Public/Public";
 import connectFHIR from "../../services/FhirClient";
+import {Home} from "../../pages/Home/Home";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => redirect('/sleep-history'),
+        loader: () => redirect('/home'),
+      },
+      {
+        path: 'home',
+        element: <Home />,
       },
       {
         path: 'sleep-history',
