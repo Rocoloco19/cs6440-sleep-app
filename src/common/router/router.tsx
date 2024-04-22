@@ -51,4 +51,6 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename:'/cs6440-sleep-app',
+});

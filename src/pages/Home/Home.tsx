@@ -32,23 +32,25 @@ export const Home = () => {
       <br/>
       <h3>Care Plans:</h3>
       {
-        carePlan.map(plan => {
-          return (
-            <Card className='card-container'>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Start Date: {(plan.period?.start || '').toString() || 'N/A'}
-                </Typography>
-                <Typography variant="h6">
-                  Category: {plan.category && plan.category[0]?.text}
-                </Typography>
-                <Typography variant="body2" component="div">
-                  ID: {plan.id}
-                </Typography>
-              </CardContent>
-            </Card>
-          )
-        })
+        carePlan.length > 0 ? (
+          carePlan.map(plan => {
+            return (
+              <Card className='card-container'>
+                <CardContent>
+                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    Start Date: {(plan.period?.start || '').toString() || 'N/A'}
+                  </Typography>
+                  <Typography variant="h6">
+                    Category: {plan.category && plan.category[0]?.text}
+                  </Typography>
+                  <Typography variant="body2" component="div">
+                    ID: {plan.id}
+                  </Typography>
+                </CardContent>
+              </Card>
+            )
+          })
+        ) : <p>No Care Plans found</p>
       }
     </>
   );

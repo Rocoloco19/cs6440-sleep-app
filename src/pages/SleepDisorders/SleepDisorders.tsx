@@ -4,8 +4,9 @@ import {IObservation} from "@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IObservati
 import connectFHIR from "../../services/FhirClient";
 import {IBundle} from "@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IBundle";
 import * as ObservationCategory from '../../data/CodeSystem/ObservationCategory';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { GridColDef } from '@mui/x-data-grid';
 import {causes} from './causes';
+import {Table} from "../../common/Table/TableComponent";
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Id', width: 170 },
@@ -36,7 +37,7 @@ export const SleepDisorders = () => {
         description: resource.code.text || 'N/A',
       };
     }) || [];
-    setObservations(entries);
+    setObservations([...entries]);
   };
 
   useEffect(() => {
@@ -83,21 +84,14 @@ export const SleepDisorders = () => {
           }
         </Stack>
         <br/>
-        <div style={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={observations}
-            columns={columns}
-            filterModel={{
-              items: [{ field: 'description', operator: 'contains', value: selectedDisorder === 'None' ? '' : selectedDisorder }],
-            }}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
-              },
-            }}
-            pageSizeOptions={[5, 10]}
-          />
-        </div>
+        <Table
+          title={'Results'}
+          columns={columns}
+          rows={observations}
+          filterModel={{
+            items: [{ field: 'description', operator: 'contains', value: selectedDisorder === 'None' ? '' : selectedDisorder }],
+          }}
+        />
       </FormControl>
     </>
   );

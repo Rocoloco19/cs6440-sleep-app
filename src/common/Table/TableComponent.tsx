@@ -2,14 +2,18 @@ import React, {useEffect, useState} from 'react';
 import connectFHIR from "../../services/FhirClient";
 import {IBundle} from "@smile-cdr/fhirts/dist/FHIR-R4/interfaces/IBundle";
 import {DataGrid, GridColDef} from "@mui/x-data-grid";
+import {GridFilterModel} from "@mui/x-data-grid/models/gridFilterModel";
 
 interface TableProps {
   title: string;
   columns: GridColDef[];
-  resourceType: string;
+  resourceType?: string;
+  rows?: Array<any>;
+  filterModel?: GridFilterModel;
 }
 
-export const Table: React.FC<TableProps> = ({title, columns, resourceType}) => {
+export const Table: React.FC<TableProps> = (
+  {title, columns, resourceType, rows, filterModel}) => {
   const [data, setData] = useState([] as Array<any>)
 
   const fetchData = async() => {
@@ -22,8 +26,12 @@ export const Table: React.FC<TableProps> = ({title, columns, resourceType}) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (rows !== undefined) {
+      setData([...rows]);
+    } else {
+      fetchData();
+    }
+  }, [rows]);
 
   return (
     <>
@@ -34,12 +42,14 @@ export const Table: React.FC<TableProps> = ({title, columns, resourceType}) => {
             <DataGrid
               rows={data}
               columns={columns}
+              filterModel={filterModel}
               initialState={{
                 pagination: {
                   paginationModel: { page: 0, pageSize: 5 },
                 },
               }}
               pageSizeOptions={[5, 10]}
+              style={{minHeight: 180}}
             />
           ) : <p>No data</p>
         }
