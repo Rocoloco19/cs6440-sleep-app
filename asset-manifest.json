@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cs6440-sleep-app/static/css/main.76e61aab.css",
-    "main.js": "/cs6440-sleep-app/static/js/main.f111f0b1.js",
+    "main.js": "/cs6440-sleep-app/static/js/main.76e64294.js",
     "static/js/453.afcc527a.chunk.js": "/cs6440-sleep-app/static/js/453.afcc527a.chunk.js",
     "static/media/roboto-latin-500-normal.woff2": "/cs6440-sleep-app/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/cs6440-sleep-app/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
@@ -61,11 +61,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/cs6440-sleep-app/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/cs6440-sleep-app/index.html",
     "main.76e61aab.css.map": "/cs6440-sleep-app/static/css/main.76e61aab.css.map",
-    "main.f111f0b1.js.map": "/cs6440-sleep-app/static/js/main.f111f0b1.js.map",
+    "main.76e64294.js.map": "/cs6440-sleep-app/static/js/main.76e64294.js.map",
     "453.afcc527a.chunk.js.map": "/cs6440-sleep-app/static/js/453.afcc527a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76e61aab.css",
-    "static/js/main.f111f0b1.js"
+    "static/js/main.76e64294.js"
   ]
 }
